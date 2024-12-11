@@ -35,7 +35,7 @@ const LocationModal = ({ onDeliveryLocationSet, mapRef }) => {
 
   const handleManualSearch = async () => {
     if (manualLocation.trim() === "") return alert("Please enter a valid address");
-  
+
     try {
       const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
       const response = await axios.get(
@@ -47,13 +47,13 @@ const LocationModal = ({ onDeliveryLocationSet, mapRef }) => {
           },
         }
       );
-  
+
       const { center, place_name } = response.data.features[0] || {};
       if (!center) {
         alert("Location not found. Please try again.");
         return;
       }
-      
+
       const coordinates = { lng: center[0], lat: center[1] };
       updateLocation({ ...coordinates, address: place_name });
     } catch (error) {
@@ -61,32 +61,28 @@ const LocationModal = ({ onDeliveryLocationSet, mapRef }) => {
       alert("Unable to locate the address. Please try again.");
     }
   };
-  
+
   const updateLocation = async (location) => {
     try {
-      // Ensure we have valid coordinates before making a backend call
       if (!location.lat || !location.lng) {
         alert("Invalid location coordinates. Please try again.");
         return;
       }
-      const address = `${location.lat} ${location.lng}`
+      const address = `${location.lat} ${location.lng}`;
       const locationData = {
-        address: address,  // Full address received from geocoding API
+        address: address,
       };
-  
-      // Send the location data to the backend only if it's valid
-       await axios.post("http://localhost:5000/api/addresses/recent-Address", locationData);
-       
-       // Update Redux and selected location
-       dispatch(setLocation(location));
+
+      await axios.post("http://localhost:5000/api/addresses/recent-Address", locationData);
+
+      dispatch(setLocation(location));
       setSelectedLocation(location);
-  
-      // Update the map view
+
       if (mapRef && mapRef.current) {
         mapRef.current.setCenter([location.lng, location.lat]);
         mapRef.current.setZoom(12);
       }
-  
+
       onDeliveryLocationSet(true);
       setManualLocation("");
       setModalVisible(false);
@@ -95,10 +91,15 @@ const LocationModal = ({ onDeliveryLocationSet, mapRef }) => {
       alert("Error while saving the location. Please try again.");
     }
   };
-  
+
   const handleChangeLocation = () => {
     setModalVisible(true);
     setSelectedLocation(null);
+  };
+
+  const handleLocationChange = (newLocation) => {
+    setSelectedLocation(newLocation);
+    dispatch(setLocation(newLocation));
   };
 
   return (

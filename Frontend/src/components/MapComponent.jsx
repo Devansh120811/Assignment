@@ -3,7 +3,7 @@ import Map, { Marker, NavigationControl } from "react-map-gl";
 import { LocateFixed } from "lucide-react";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-const MapComponent = ({ location, onMarkerDragEnd, mapRef, isDeliveryLocationSet }) => {
+const MapComponent = ({ location, onMarkerDragEnd, mapRef, isDeliveryLocationSet, onLocationChange }) => {
   const [viewState, setViewState] = useState({
     longitude: location.lng,
     latitude: location.lat,
@@ -41,6 +41,7 @@ const MapComponent = ({ location, onMarkerDragEnd, mapRef, isDeliveryLocationSet
           }
 
           onMarkerDragEnd(newLocation);
+          onLocationChange(newLocation);  // Notify parent about location change
         },
         (error) => {
           console.error("Error fetching location:", error);
@@ -76,6 +77,7 @@ const MapComponent = ({ location, onMarkerDragEnd, mapRef, isDeliveryLocationSet
               latitude: lat,
             });
             onMarkerDragEnd(newLocation); // Notify parent about updated location
+            onLocationChange(newLocation);  // Notify parent about location change
           }}
         />
       </Map>
