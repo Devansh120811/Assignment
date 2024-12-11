@@ -50,7 +50,7 @@ npm install
 
 Run the app:
 npm start
-Open your browser and go to http://localhost:3000 to see the app in action! 🌐
+Open your browser and go to http://localhost:5173 to see the app in action! 🌐
 
 📄 How to Contribute
 Fork the repo 🖱️.
