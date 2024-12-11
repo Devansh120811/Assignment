@@ -1,15 +1,26 @@
-📍 Location Selection and Management System 🌍
-Welcome to the Location Selection and Management System! 🚀 This app allows users to easily select, adjust, and save their locations. It also keeps track of recent searches for quick access! 🔄
+📍 Location Selection and Management System 
+
+🌍 Welcome to the Location Selection and Management System! 
+
+🚀 This app allows users to easily select, adjust, and save their locations. It also keeps track of recent searches for quick access! 🔄
 
 🚀 Features
 🌍 Location Fetching:
 Choose your location manually or let the browser fetch it for you! 📡
+
+
 🛠️ Micro-Adjustment:
 Once the location is selected, you can fine-tune it with easy controls! 🎛️
+
+
 💾 Save Your Address:
 Save your selected location for later use! 📌
+
+
 🔄 Recent Searches:
 View and re-select previously searched locations! 🕒
+
+
 🛠️ How to Use
 Select Your Location:
 
@@ -28,6 +39,8 @@ You can always view your Recent Searches 🕵️‍♀️ and quickly jump to an
 📊 JavaScript for functionality
 🗺️ Map API (Google Maps/Leaflet/Mapbox) for location display
 📦 Local Storage/Database to save addresses and recent searches
+
+
 🔧 Installation Instructions
 Clone the repository:
 git clone https://github.com/Devansh120811/Assignment.git
